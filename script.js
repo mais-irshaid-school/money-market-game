@@ -86,13 +86,23 @@ function renderProgress() {
   $("progressText").textContent = `${arabicNumber(Math.min(current + 1, QUESTIONS_PER_GAME))} من ${arabicNumber(QUESTIONS_PER_GAME)}`;
   $("progressFill").style.width = `${(current / QUESTIONS_PER_GAME) * 100}%`;
 }
-function renderCoins() {
+function renderCoins(dropped = false) {
   $("coinCount").textContent = arabicNumber(coins);
-  const height = (coins / QUESTIONS_PER_GAME) * 50;
-  $("jarFill").setAttribute("y", 76 - height);
-  $("jarFill").setAttribute("height", height);
+  const pile = $("jarCoins");
+  pile.innerHTML = "";
+  for (let i = 0; i < coins; i++) {
+    const coin = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+    coin.setAttribute("cx", 40 + ((i % 3) - 1) * 15);
+    coin.setAttribute("cy", 86 - Math.floor(i / 3) * 7);
+    coin.setAttribute("rx", 12);
+    coin.setAttribute("ry", 5);
+    coin.setAttribute("fill", "url(#gold)");
+    coin.setAttribute("stroke", "#b97d0b");
+    coin.setAttribute("stroke-width", "1.2");
+    if (dropped && i === coins - 1) coin.classList.add("coin-in");
+    pile.appendChild(coin);
+  }
 }
-
 /* قطعة ذهبية تطير من الدكان إلى الحصّالة */
 function flyCoin() {
   const from = stall.getBoundingClientRect();
@@ -120,7 +130,7 @@ function flyCoin() {
 
 async function showStall(index) {
   const [icon, name] = STALLS[index];
-  $("questionCard").hidden = true;
+  $("questionBubble").hidden = true;
   stall.classList.add("in-start");
   $("stallIcon").textContent = icon;
   $("stallName").textContent = name;
@@ -148,7 +158,7 @@ function renderQuestion(index) {
     btn.addEventListener("click", () => handleAnswer(i, btn));
     box.appendChild(btn);
   });
-  $("questionCard").hidden = false;
+  $("questionBubble").hidden = false;
   busy = false;
   setStatus(`${q.text}`);
 }
@@ -163,13 +173,13 @@ async function handleAnswer(i, btn) {
     sounds.coin();
     await flyCoin();
     coins++;
-    renderCoins();
+    renderCoins(true);
     setStatus("إجابة صحيحة! كسبتِ قطعة ذهبية.");
     await wait(450);
     current++;
     if (current >= QUESTIONS_PER_GAME) return win();
     renderProgress();
-    $("questionCard").hidden = true;
+    $("questionBubble").hidden = true;
     stall.classList.add("out");
     await wait(650);
     showStall(current);

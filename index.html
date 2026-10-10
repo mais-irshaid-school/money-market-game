@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="only light" />
     <meta name="description" content="سوق الأمان — لعبة تعليمية عن وظائف المال في المجتمع لطالبات الصف السابع." />
     <title>سوق الأمان</title>
-    <link rel="stylesheet" href="style.css?v=3" />
+    <link rel="stylesheet" href="style.css?v=7" />
   </head>
   <body>
     <main class="game-shell">
@@ -33,12 +33,21 @@
           <strong id="hearts">❤️❤️❤️</strong>
         </div>
         <div class="stat piggy-stat">
-          <span class="piggy" id="piggy" aria-hidden="true"><svg class="jar" viewBox="0 0 64 80" aria-hidden="true">
-  <defs><clipPath id="jarClip"><path d="M10 20 Q8 22 8 28 L8 68 Q8 76 16 76 L48 76 Q56 76 56 68 L56 28 Q56 22 54 20 Z"/></clipPath></defs>
-  <path d="M10 20 Q8 22 8 28 L8 68 Q8 76 16 76 L48 76 Q56 76 56 68 L56 28 Q56 22 54 20 Z" fill="#e9f7f4" stroke="#9cc9c4" stroke-width="3"/>
-  <g clip-path="url(#jarClip)"><rect id="jarFill" x="0" y="76" width="64" height="0" fill="#f2b535"/><g id="jarCoins" fill="#ffe48a" stroke="#b97d0b" stroke-width="1.2"></g></g>
-  <rect x="12" y="6" width="40" height="14" rx="5" fill="#1f8a83" stroke="#146560" stroke-width="2"/>
-  <rect x="24" y="11" width="16" height="4" rx="2" fill="#0d3f3c"/>
+          <span class="piggy" id="piggy" aria-hidden="true"><svg class="jar" viewBox="0 0 80 100" aria-hidden="true">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7fffe"/><stop offset=".55" stop-color="#d9f1ee"/><stop offset="1" stop-color="#bfe2de"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a6"/><stop offset="1" stop-color="#f2b535"/></linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#37bdb3"/><stop offset="1" stop-color="#146560"/></linearGradient>
+    <clipPath id="jarClip"><path d="M14 26 Q10 30 10 38 L10 84 Q10 94 20 94 L60 94 Q70 94 70 84 L70 38 Q70 30 66 26 Z"/></clipPath>
+  </defs>
+  <path d="M14 26 Q10 30 10 38 L10 84 Q10 94 20 94 L60 94 Q70 94 70 84 L70 38 Q70 30 66 26 Z" fill="url(#glass)" stroke="#7fbab4" stroke-width="3"/>
+  <circle cx="40" cy="52" r="11" fill="#fff4d6" stroke="#f2b535" stroke-width="2"/>
+  <text x="40" y="58" text-anchor="middle" font-size="16" font-weight="900" fill="#b97d0b" font-family="Cairo, Tahoma, sans-serif">د</text>
+  <g id="jarCoins" clip-path="url(#jarClip)"></g>
+  <path d="M17 40 L17 80" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+  <rect x="8" y="8" width="64" height="20" rx="8" fill="url(#lid)" stroke="#0f4c48" stroke-width="2"/>
+  <rect x="13" y="11" width="54" height="4" rx="2" fill="#fff" opacity=".25"/>
+  <rect x="27" y="17" width="26" height="5" rx="2.5" fill="#0a2f2d"/>
 </svg></span>
           <div><span class="stat-label">الحصّالة</span><strong id="coinCount">٠</strong></div>
         </div>
@@ -62,6 +71,12 @@
         </div>
         <div class="girl" id="girl"><img src="assets/girl.png" alt="الفتاة تتجول في السوق" /></div>
 
+        <section class="question-bubble" id="questionBubble" hidden aria-live="polite">
+        <p class="question-number" id="questionNumber"></p>
+        <p class="question-text" id="questionText"></p>
+        <div class="answers" id="answers"></div>
+      </section>
+
         <div class="start-card" id="startCard">
           <strong>لكل دكان سؤال!</strong>
           <span>أجيبي إجابة صحيحة لتكسبي قطعة ذهبية. لديك ثلاث محاولات فقط.</span>
@@ -69,11 +84,6 @@
         </div>
       </section>
 
-      <section class="question-card" id="questionCard" hidden aria-live="polite">
-        <p class="question-number" id="questionNumber"></p>
-        <p class="question-text" id="questionText"></p>
-        <div class="answers" id="answers"></div>
-      </section>
     </main>
 
     <div class="result-overlay" id="winOverlay" hidden>
@@ -98,7 +108,7 @@
     </div>
 
     <div class="sr-only" id="statusMessage" aria-live="assertive"></div>
-    <script src="questions.js?v=3"></script>
-    <script src="script.js?v=3"></script>
+    <script src="questions.js?v=7"></script>
+    <script src="script.js?v=7"></script>
   </body>
 </html>
