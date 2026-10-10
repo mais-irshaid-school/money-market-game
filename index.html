@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#fff4d6" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="description" content="سوق الأمان — لعبة تعليمية عن وظائف المال في المجتمع لطالبات الصف السابع." />
+    <title>سوق الأمان</title>
+    <link rel="stylesheet" href="style.css?v=1" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">التربية المالية · الصف السابع</p>
+          <h1>💰 سوق الأمان 💰</h1>
+          <p class="subtitle">مرّي على دكاكين السوق، وأجيبي عن أسئلة وظائف المال لتملئي الحصّالة!</p>
+        </div>
+        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">
+          <span class="sound-icon" aria-hidden="true">🔊</span><span>الصوت</span>
+        </button>
+      </header>
+
+      <section class="status-panel" aria-label="حالة اللعبة">
+        <div class="stat">
+          <span class="stat-label">الدكان</span>
+          <strong id="progressText">٠ من ١٠</strong>
+        </div>
+        <div class="progress-track" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="stat">
+          <span class="stat-label">المحاولات</span>
+          <strong id="hearts">❤️❤️❤️</strong>
+        </div>
+        <div class="stat piggy-stat">
+          <span class="piggy" id="piggy" aria-hidden="true">🐷</span>
+          <div><span class="stat-label">الحصّالة</span><strong id="coinCount">٠</strong></div>
+        </div>
+      </section>
+
+      <section class="scene" id="scene" aria-label="سوق الأمان">
+        <div class="sun" aria-hidden="true">☀️</div>
+        <div class="bunting" aria-hidden="true">🚩🏳️🚩🏳️🚩🏳️🚩🏳️🚩🏳️🚩🏳️</div>
+        <div class="street" aria-hidden="true"></div>
+        <div class="stall" id="stall">
+          <div class="stall-awning" aria-hidden="true"></div>
+          <span class="stall-icon" id="stallIcon">🏪</span>
+          <span class="stall-name" id="stallName">السوق</span>
+        </div>
+        <div class="girl" id="girl"><img src="assets/girl.png" alt="الفتاة تتجول في السوق" /></div>
+
+        <div class="start-card" id="startCard">
+          <strong>لكل دكان سؤال!</strong>
+          <span>أجيبي إجابة صحيحة لتكسبي قطعة ذهبية. لديك ثلاث محاولات فقط.</span>
+          <button class="primary-button" id="startButton" type="button">ابدئي التسوّق ←</button>
+        </div>
+      </section>
+
+      <section class="question-card" id="questionCard" hidden aria-live="polite">
+        <p class="question-number" id="questionNumber"></p>
+        <p class="question-text" id="questionText"></p>
+        <div class="answers" id="answers"></div>
+      </section>
+    </main>
+
+    <div class="result-overlay" id="winOverlay" hidden>
+      <div class="result-card">
+        <div class="result-orb">🐷</div>
+        <p class="result-kicker">حصّالة ممتلئة!</p>
+        <h2>🎉 تهانينا! لقد فزتِ! 🎉</h2>
+        <p>جمعتِ عشر قطع ذهبية وأجبتِ عن أسئلة جميع الدكاكين.</p>
+        <p class="advice">«المال زينة الحياة الدنيا، لكنّ الحكمة في استخدامه هي التي تجعله نعمة حقيقية؛ فاستثمريه بذكاء وادّخري منه لتأمين مستقبلك.»</p>
+        <button class="primary-button" id="playAgainButton" type="button">العبي مرة أخرى ↺</button>
+      </div>
+    </div>
+
+    <div class="result-overlay" id="loseOverlay" hidden>
+      <div class="result-card">
+        <div class="result-orb">🌱</div>
+        <p class="result-kicker">المحاولة جزء من الرحلة</p>
+        <h2>😔 حاولي مرة أخرى!</h2>
+        <p>لقد استنفدتِ المحاولات الثلاث، وستبدأ اللعبة من جديد.</p>
+        <button class="primary-button" id="restartButton" type="button">ابدئي من جديد ↺</button>
+      </div>
+    </div>
+
+    <div class="sr-only" id="statusMessage" aria-live="assertive"></div>
+    <script src="questions.js?v=1"></script>
+    <script src="script.js?v=1"></script>
+  </body>
+</html>
