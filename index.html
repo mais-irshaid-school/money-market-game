@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="only light" />
     <meta name="description" content="سوق الأمان — لعبة تعليمية عن وظائف المال في المجتمع لطالبات الصف السابع." />
     <title>سوق الأمان</title>
-    <link rel="stylesheet" href="style.css?v=8" />
+    <link rel="stylesheet" href="style.css?v=16" />
   </head>
   <body>
     <main class="game-shell">
@@ -69,7 +69,10 @@
           <span class="stall-icon" id="stallIcon">🏪</span>
           <span class="stall-name" id="stallName">السوق</span>
         </div>
-        <div class="girl" id="girl"><img src="assets/girl.png" alt="الفتاة تتجول في السوق" /></div>
+        <div class="girl" id="girl">
+          <img src="assets/girl.png?v=4" alt="الفتاة تتجول في السوق وبيدها سلة" />
+          <div class="basket-items" id="basketItems" aria-hidden="true"></div>
+        </div>
 
         <section class="question-bubble" id="questionBubble" hidden aria-live="polite">
         <p class="question-number" id="questionNumber"></p>
@@ -112,7 +115,7 @@
     </div>
 
     <div class="sr-only" id="statusMessage" aria-live="assertive"></div>
-    <script src="questions.js?v=8"></script>
-    <script src="script.js?v=8"></script>
+    <script src="questions.js?v=16"></script>
+    <script src="script.js?v=16"></script>
   </body>
 </html>

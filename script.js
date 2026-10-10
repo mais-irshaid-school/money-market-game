@@ -14,6 +14,7 @@ let attemptsLeft = MAX_ATTEMPTS;
 let coins = 0;
 let busy = false;
 let missed = [];
+let basketItems = [];
 let muted = false;
 let audioContext = null;
 
@@ -87,14 +88,49 @@ function renderProgress() {
   $("progressText").textContent = `${arabicNumber(Math.min(current + 1, QUESTIONS_PER_GAME))} من ${arabicNumber(QUESTIONS_PER_GAME)}`;
   $("progressFill").style.width = `${(current / QUESTIONS_PER_GAME) * 100}%`;
 }
+function renderBasket(dropped = false) {
+  const box = $("basketItems");
+  box.innerHTML = "";
+  basketItems.forEach((icon, i) => {
+    const item = document.createElement("span");
+    item.className = "basket-item";
+    item.textContent = icon;
+    /* أربعة أغراض في كل صف، وكل غرض في مربعه فلا يتداخل مع غيره */
+    item.style.setProperty("--col", i % 4);
+    item.style.setProperty("--row", Math.floor(i / 4));
+    if (dropped && i === basketItems.length - 1) item.classList.add("item-in");
+    box.appendChild(item);
+  });
+}
+
+/* المشتريات تطير من الدكان إلى السلة في يد الفتاة */
+function flyItem() {
+  const from = $("stallIcon").getBoundingClientRect();
+  const to = girl.getBoundingClientRect();
+  const item = document.createElement("span");
+  item.className = "item-fly";
+  item.textContent = STALLS[current][0];
+  const x0 = from.left + from.width / 2, y0 = from.top + from.height / 2;
+  item.style.left = `${x0}px`;
+  item.style.top = `${y0}px`;
+  document.body.appendChild(item);
+  const dx = to.left + to.width * .3 - x0;
+  const dy = to.top + to.height * .5 - y0;
+  const anim = item.animate(
+    [{ transform: "translate(-50%,-50%) scale(1)" }, { transform: `translate(calc(-50% + ${dx / 2}px), calc(-50% + ${dy - 90}px)) scale(1.2)` }, { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.8)` }],
+    { duration: 800, easing: "ease-in-out" }
+  );
+  return anim.finished.catch(() => {}).then(() => item.remove());
+}
+
 function renderCoins(dropped = false) {
   $("coinCount").textContent = arabicNumber(coins);
   const pile = $("jarCoins");
   pile.innerHTML = "";
   for (let i = 0; i < coins; i++) {
     const coin = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-    coin.setAttribute("cx", 40 + ((i % 3) - 1) * 15);
-    coin.setAttribute("cy", 86 - Math.floor(i / 3) * 7);
+    coin.setAttribute("cx", 40 + ((i % 4) - 1) * 15);
+    coin.setAttribute("cy", 86 - Math.floor(i / 4) * 7);
     coin.setAttribute("rx", 12);
     coin.setAttribute("ry", 5);
     coin.setAttribute("fill", "url(#gold)");
@@ -172,9 +208,11 @@ async function handleAnswer(i, btn) {
     btn.classList.add("correct");
     document.querySelectorAll(".answer").forEach((b) => (b.disabled = true));
     sounds.coin();
-    await flyCoin();
+    await Promise.all([flyCoin(), flyItem()]);
+    basketItems.push(STALLS[current][0]);
     coins++;
     renderCoins(true);
+    renderBasket(true);
     setStatus("إجابة صحيحة! كسبتِ قطعة ذهبية.");
     await wait(450);
     current++;
@@ -236,6 +274,7 @@ function startGame() {
   coins = 0;
   attemptsLeft = MAX_ATTEMPTS;
   missed = [];
+  basketItems = [];
   busy = true;
   $("winOverlay").hidden = true;
   $("loseOverlay").hidden = true;
@@ -243,6 +282,7 @@ function startGame() {
   renderHearts();
   renderProgress();
   renderCoins();
+  renderBasket();
   sounds.start();
   showStall(0);
 }
