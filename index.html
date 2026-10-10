@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="only light" />
     <meta name="description" content="سوق الأمان — لعبة تعليمية عن وظائف المال في المجتمع لطالبات الصف السابع." />
     <title>سوق الأمان</title>
-    <link rel="stylesheet" href="style.css?v=7" />
+    <link rel="stylesheet" href="style.css?v=8" />
   </head>
   <body>
     <main class="game-shell">
@@ -100,15 +100,19 @@
     <div class="result-overlay" id="loseOverlay" hidden>
       <div class="result-card">
         <div class="result-orb">🌱</div>
-        <p class="result-kicker">المحاولة جزء من الرحلة</p>
-        <h2>😔 حاولي مرة أخرى!</h2>
-        <p>لقد استنفدتِ المحاولات الثلاث، وستبدأ اللعبة من جديد.</p>
-        <button class="primary-button" id="restartButton" type="button">ابدئي من جديد ↺</button>
+        <p class="result-kicker">المحاولة جزء من التعلّم</p>
+        <h2>قرّبتِ كثيرًا!</h2>
+        <p id="loseSummary"></p>
+        <div class="review" id="loseReview">
+          <p class="review-title">لنراجع معًا:</p>
+          <ul id="loseReviewList"></ul>
+        </div>
+        <button class="primary-button" id="restartButton" type="button">جرّبي مرة ثانية ↺</button>
       </div>
     </div>
 
     <div class="sr-only" id="statusMessage" aria-live="assertive"></div>
-    <script src="questions.js?v=7"></script>
-    <script src="script.js?v=7"></script>
+    <script src="questions.js?v=8"></script>
+    <script src="script.js?v=8"></script>
   </body>
 </html>

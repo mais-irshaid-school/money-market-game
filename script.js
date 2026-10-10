@@ -13,6 +13,7 @@ let current = 0;
 let attemptsLeft = MAX_ATTEMPTS;
 let coins = 0;
 let busy = false;
+let missed = [];
 let muted = false;
 let audioContext = null;
 
@@ -188,6 +189,7 @@ async function handleAnswer(i, btn) {
     btn.disabled = true;
     sounds.wrong();
     attemptsLeft--;
+    if (!missed.includes(q)) missed.push(q);
     renderHearts();
     setStatus("إجابة غير صحيحة، حاولي مرة أخرى.");
     if (attemptsLeft <= 0) {
@@ -206,6 +208,23 @@ function win() {
 }
 function lose() {
   sounds.lose();
+  $("loseSummary").textContent = coins > 0
+    ? `جمعتِ ${arabicNumber(coins)} من ${arabicNumber(QUESTIONS_PER_GAME)} قطع ذهبية. المحاولة جزء من التعلّم، جرّبي مرة ثانية!`
+    : "لم تفتح الحصّالة بعد، لكن المحاولة جزء من التعلّم. جرّبي مرة ثانية!";
+  const list = $("loseReviewList");
+  list.innerHTML = "";
+  missed.forEach((q) => {
+    const item = document.createElement("li");
+    const question = document.createElement("span");
+    question.className = "review-q";
+    question.textContent = q.text;
+    const answer = document.createElement("span");
+    answer.className = "review-a";
+    answer.textContent = `الإجابة الصحيحة: ${q.options[q.correctIndex]}`;
+    item.append(question, answer);
+    list.appendChild(item);
+  });
+  $("loseReview").hidden = missed.length === 0;
   $("loseOverlay").hidden = false;
   setStatus("استنفدتِ المحاولات الثلاث.");
 }
@@ -216,6 +235,7 @@ function startGame() {
   current = 0;
   coins = 0;
   attemptsLeft = MAX_ATTEMPTS;
+  missed = [];
   busy = true;
   $("winOverlay").hidden = true;
   $("loseOverlay").hidden = true;
