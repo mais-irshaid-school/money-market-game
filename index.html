@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="only light" />
     <meta name="description" content="سوق الأمان — لعبة تعليمية عن وظائف المال في المجتمع لطالبات الصف السابع." />
     <title>سوق الأمان</title>
-    <link rel="stylesheet" href="style.css?v=2" />
+    <link rel="stylesheet" href="style.css?v=3" />
   </head>
   <body>
     <main class="game-shell">
@@ -45,8 +45,15 @@
       </section>
 
       <section class="scene" id="scene" aria-label="سوق الأمان">
-        <div class="sun" aria-hidden="true">☀️</div>
-        <div class="bunting" aria-hidden="true">🚩🏳️🚩🏳️🚩🏳️🚩🏳️🚩🏳️🚩🏳️</div>
+        <div class="sun" aria-hidden="true"></div>
+        <div class="lanterns" aria-hidden="true">
+          <span style="--x: 12%; --h: 34px; --c: #e5624f"></span><span style="--x: 30%; --h: 50px; --c: #f2b535"></span>
+          <span style="--x: 50%; --h: 30px; --c: #1f8a83"></span><span style="--x: 68%; --h: 46px; --c: #e5624f"></span>
+        </div>
+        <div class="skyline" aria-hidden="true">
+          <b style="height: 40px"></b><b style="height: 62px"></b><b style="height: 48px"></b><b style="height: 70px"></b>
+          <b style="height: 44px"></b><b style="height: 58px"></b><b style="height: 38px"></b>
+        </div>
         <div class="street" aria-hidden="true"></div>
         <div class="stall" id="stall">
           <div class="stall-awning" aria-hidden="true"></div>
@@ -91,7 +98,7 @@
     </div>
 
     <div class="sr-only" id="statusMessage" aria-live="assertive"></div>
-    <script src="questions.js?v=2"></script>
-    <script src="script.js?v=2"></script>
+    <script src="questions.js?v=3"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>

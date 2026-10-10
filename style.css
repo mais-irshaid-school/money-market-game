@@ -64,8 +64,11 @@ h2 { margin: 0 0 8px; }
   background: linear-gradient(#bfe6f2 0, #e9f7f4 52%, #f6d98f 52%);
   border: 3px solid var(--white); border-radius: 30px; box-shadow: var(--shadow);
 }
-.sun { position: absolute; top: 22px; left: 5%; font-size: 3rem; }
-.bunting { position: absolute; top: 6px; left: 0; width: 100%; text-align: center; font-size: 1.4rem; letter-spacing: .6rem; white-space: nowrap; overflow: hidden; }
+.sun { position: absolute; top: 26px; right: 10%; width: 54px; height: 54px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff3b0, #ffd04d 65%); box-shadow: 0 0 0 12px rgba(255, 214, 90, .28), 0 0 0 26px rgba(255, 214, 90, .14); }
+.lanterns span { position: absolute; top: 0; left: var(--x); width: 2px; height: var(--h); background: #9a6f1e; }
+.lanterns span::after { content: ""; position: absolute; bottom: -26px; left: -11px; width: 24px; height: 28px; background: var(--c); border-radius: 8px 8px 12px 12px; box-shadow: 0 0 14px rgba(255, 170, 60, .7); }
+.skyline { position: absolute; left: 0; right: 0; bottom: 28%; height: 70px; display: flex; align-items: flex-end; gap: 6px; padding: 0 10px; }
+.skyline b { flex: 1; background: #e7c98a; border-radius: 10px 10px 0 0; opacity: .8; }
 .street { position: absolute; left: 0; right: 0; bottom: 0; height: 28%; background: repeating-linear-gradient(90deg, #e8c46d 0 70px, #dfb95c 70px 140px); border-top: 4px solid #c99a3b; }
 
 .stall {
