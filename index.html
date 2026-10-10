@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="only light" />
     <meta name="description" content="سوق الأمان — لعبة تعليمية عن وظائف المال في المجتمع لطالبات الصف السابع." />
     <title>سوق الأمان</title>
-    <link rel="stylesheet" href="style.css?v=1" />
+    <link rel="stylesheet" href="style.css?v=2" />
   </head>
   <body>
     <main class="game-shell">
@@ -33,7 +33,13 @@
           <strong id="hearts">❤️❤️❤️</strong>
         </div>
         <div class="stat piggy-stat">
-          <span class="piggy" id="piggy" aria-hidden="true">🐷</span>
+          <span class="piggy" id="piggy" aria-hidden="true"><svg class="jar" viewBox="0 0 64 80" aria-hidden="true">
+  <defs><clipPath id="jarClip"><path d="M10 20 Q8 22 8 28 L8 68 Q8 76 16 76 L48 76 Q56 76 56 68 L56 28 Q56 22 54 20 Z"/></clipPath></defs>
+  <path d="M10 20 Q8 22 8 28 L8 68 Q8 76 16 76 L48 76 Q56 76 56 68 L56 28 Q56 22 54 20 Z" fill="#e9f7f4" stroke="#9cc9c4" stroke-width="3"/>
+  <g clip-path="url(#jarClip)"><rect id="jarFill" x="0" y="76" width="64" height="0" fill="#f2b535"/><g id="jarCoins" fill="#ffe48a" stroke="#b97d0b" stroke-width="1.2"></g></g>
+  <rect x="12" y="6" width="40" height="14" rx="5" fill="#1f8a83" stroke="#146560" stroke-width="2"/>
+  <rect x="24" y="11" width="16" height="4" rx="2" fill="#0d3f3c"/>
+</svg></span>
           <div><span class="stat-label">الحصّالة</span><strong id="coinCount">٠</strong></div>
         </div>
       </section>
@@ -65,7 +71,7 @@
 
     <div class="result-overlay" id="winOverlay" hidden>
       <div class="result-card">
-        <div class="result-orb">🐷</div>
+        <div class="result-orb">💰</div>
         <p class="result-kicker">حصّالة ممتلئة!</p>
         <h2>🎉 تهانينا! لقد فزتِ! 🎉</h2>
         <p>جمعتِ عشر قطع ذهبية وأجبتِ عن أسئلة جميع الدكاكين.</p>
@@ -85,7 +91,7 @@
     </div>
 
     <div class="sr-only" id="statusMessage" aria-live="assertive"></div>
-    <script src="questions.js?v=1"></script>
-    <script src="script.js?v=1"></script>
+    <script src="questions.js?v=2"></script>
+    <script src="script.js?v=2"></script>
   </body>
 </html>

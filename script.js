@@ -86,7 +86,12 @@ function renderProgress() {
   $("progressText").textContent = `${arabicNumber(Math.min(current + 1, QUESTIONS_PER_GAME))} من ${arabicNumber(QUESTIONS_PER_GAME)}`;
   $("progressFill").style.width = `${(current / QUESTIONS_PER_GAME) * 100}%`;
 }
-function renderCoins() { $("coinCount").textContent = arabicNumber(coins); }
+function renderCoins() {
+  $("coinCount").textContent = arabicNumber(coins);
+  const height = (coins / QUESTIONS_PER_GAME) * 50;
+  $("jarFill").setAttribute("y", 76 - height);
+  $("jarFill").setAttribute("height", height);
+}
 
 /* قطعة ذهبية تطير من الدكان إلى الحصّالة */
 function flyCoin() {
